@@ -1,5 +1,3 @@
-console.log("FORTWTHIKE")
-
 const ssABI = [
 	{
 		"inputs": [
@@ -145,7 +143,7 @@ const ssABI = [
 		"type": "function"
 	}
 ]
-const ssAddress = '0x1361CdD9d053cb5cD0472c8E0D58AeA8e1d10312';
+const ssAddress = '0x31286357C3FdbD105d029f383812c7eABdc8522F';
 
 // 1. detect Metamask is/is not installed
 window.addEventListener('load', function() {
@@ -271,14 +269,16 @@ ssSubmit.onclick = async () => {
 	const ssSerialNumber = document.getElementById('ss-input-serial-number').value;
 	console.log(ssName + " and serial number: " + ssSerialNumber);
 	document.getElementById("qrcode").innerHTML = "";
+	subscribeToRegisterEvents();
 	await vaccinatorContract.methods.registerVaccinatedPerson(ssName, ssSerialNumber).send({from: ethereum.selectedAddress});
 }
 
-subscribeToRegisterEvents();
-
+// subscribeToRegisterEvents();
+var successfulSubscription = vaccinatorContract.events.LogSuccess({})
+var unsuccessfulSubscription = vaccinatorContract.events.LogFailure({})
 function subscribeToRegisterEvents() {
 	// https://betterprogramming.pub/ethereum-dapps-how-to-listen-for-events-c4fa1a67cf81
-	var successfulSubscription = vaccinatorContract.events.LogSuccess({})
+	successfulSubscription = vaccinatorContract.events.LogSuccess({})
 	successfulSubscription
 		.on('data', async function(event){
 			console.log(event.returnValues);
@@ -287,17 +287,28 @@ function subscribeToRegisterEvents() {
 			console.log("qrCode: " + qrCode)
 			var qrc = new QRCode(document.getElementById("qrcode"), qrCode);
 			updateSerialNumbersLeft();
-
+			unsubscribeFromRegisterEvents();
 			alert("SUCCESS! Please take a screenshot of your QR and present it whenever needed.")
 		})
-		.on('error', console.error);
-
-	var unsuccessfulSubscription = vaccinatorContract.events.LogFailure({})
+		.on('error', function() {
+			console.error
+			unsubscribeFromRegisterEvents();
+		});
+	unsuccessfulSubscription = vaccinatorContract.events.LogFailure({})
 	unsuccessfulSubscription
 		.on('data', async function(event){
 			console.log(event.returnValues);
 			console.log("FAIL!")
-			alert("FAIL! Your serial number was not legit or already used.")
+			unsubscribeFromRegisterEvents();
+			alert("FAIL! Your serial number was not legit or already used.");
 		})
-		.on('error', console.error);
+		.on('error', function() {
+			console.error
+			unsubscribeFromRegisterEvents();
+		})
+}
+
+function unsubscribeFromRegisterEvents() {
+	successfulSubscription.unsubscribe();
+	unsuccessfulSubscription.unsubscribe();
 }
