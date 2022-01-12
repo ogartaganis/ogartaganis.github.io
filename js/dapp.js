@@ -143,7 +143,7 @@ const ssABI = [
 		"type": "function"
 	}
 ]
-const ssAddress = '0x31286357C3FdbD105d029f383812c7eABdc8522F';
+const ssAddress = '0x4cef6B0c07C4232091f347Fbe9724A3366e131d4';
 
 // 1. detect Metamask is/is not installed
 window.addEventListener('load', function() {
