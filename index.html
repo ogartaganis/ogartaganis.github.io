@@ -1,1 +1,57 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V for Vaccine</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/html5-qrcode@2.0.9/dist/html5-qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+</head>
+<body>
+    <div id="content">
+        <h1>Welcome to Vaccinator 3000</h1>
+
+        <div class="mm-box">
+            <!-- 1. detect Metamask is/is not installed -->
+            <img class="center" src="https://cdn.iconscout.com/icon/free/png-512/metamask-2728406-2261817.png" width="40"><div id="mm-detected">Detecting Metamask..</div>
+
+            <!-- 2. allow the user to get access to Metamask3. -->
+            <button id="mm-connect">Connect to MetaMask</button>
+
+            <!--MetaMask should only be provided once it's necessary-->
+            <div id="mm-current-account"></div>
+
+        </div>
+
+        <div id="tab-content">
+
+            <!-- Tab links -->
+            <div class="tab">
+                <button class="tablinks" onclick="openRole(event, 'Register')">Register</button>
+                <button class="tablinks" onclick="openRole(event, 'Verify')">Verify</button>
+            </div>
+            
+            <!-- Tab content -->
+            <div id="Register" class="tabcontent">
+                <div id="ss-serial-numbers-left">Legit serial numbers still left: *Connect Metamask First*</div>
+                <input id="ss-input-name" type="text" placeholder="Provide name"/><br />
+                <input id="ss-input-serial-number" type="number" placeholder="Provide Vaccine Serial number"/><br />
+                <button id="ss-input-button">Submit Value</button>
+
+                <div id="qrcode"></div>
+            </div>
+            
+            <div id="Verify" class="tabcontent">
+                <h3>Verify</h3>
+                <div id="qr-reader" style="width: 600px"></div>
+                <button id="qr-start-scanning">Start Scanning</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/dapp.js"></script>
+</body>
+</html>

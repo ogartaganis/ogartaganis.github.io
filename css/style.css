@@ -1,0 +1,84 @@
+body {
+    background-color: #E6F7FF;
+  }
+
+  /* sky palette */
+  /* 
+  #5CB3FF darkest
+  #45B9FF
+  #82CAFA
+  #ADDFFF
+  #E6F7FF lightest
+  */
+  
+  h1 {
+    /* color: #186FBB ; */
+    /* text-align: center; */
+  }
+  
+  p {
+    font-family: verdana;
+    font-size: 20px;
+  }
+
+  #content {
+    margin: 30px;
+  }
+
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .mm-box {
+    position: fixed;
+    border-radius: 8px;
+    top: 0;
+    right: 0;
+    background: #45B9FF;
+    margin: 30px;
+    padding: 20px;
+    color: #fff;
+    font-size: 1.4em;
+  }
+
+   /* Style the tab */
+.tab {
+  position: relative;
+  top: 100px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #ADDFFF;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #82CAFA;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #82CAFA;
+}
+
+/* Style the tab content */
+.tabcontent {
+  position: relative;
+  top: 100px;
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+} 
