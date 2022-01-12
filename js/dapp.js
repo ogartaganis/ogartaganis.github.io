@@ -1,21 +1,5 @@
 const ssABI = [
 	{
-		"inputs": [
-			{
-				"internalType": "address[]",
-				"name": "_verifiers",
-				"type": "address[]"
-			},
-			{
-				"internalType": "string[]",
-				"name": "_legitVaccineSerialNumbers",
-				"type": "string[]"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -55,6 +39,46 @@ const ssABI = [
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "vaccineSerialNumber",
+				"type": "string"
+			}
+		],
+		"name": "registerVaccinatedPerson",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "qrCode",
+				"type": "string"
+			}
+		],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address[]",
+				"name": "_verifiers",
+				"type": "address[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "_legitVaccineSerialNumbers",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
 		"inputs": [],
 		"name": "numberOfSerialsLeft",
 		"outputs": [
@@ -78,30 +102,6 @@ const ssABI = [
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "vaccineSerialNumber",
-				"type": "string"
-			}
-		],
-		"name": "registerVaccinatedPerson",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "qrCode",
-				"type": "string"
-			}
-		],
-		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
